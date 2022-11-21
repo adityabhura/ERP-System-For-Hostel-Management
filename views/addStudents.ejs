@@ -1,0 +1,15 @@
+<h1>Add studnets to  <%= hostel.name %></h1>
+<% students.forEach((student)=>{ %>
+    <p>
+    <%= student.name %>
+    <%= student.scholarId %>
+    <br>
+    <% if(!student.room.hostel){ %>
+        <form action="/addStudents/<%=hostel._id%>/<%=student._id%>" method="POST">
+            <button type="submit">Add the student to <%= hostel.name %></submit>
+        </form>
+    <% }else{ %>
+        Added to a hostel
+    <% } %>
+    </p>
+<% }) %> 

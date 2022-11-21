@@ -1,0 +1,9 @@
+<h1>Add Supervisor</h1>
+<form action="/addSupervisor/<%=hostel._id%>" method="post">
+<input type="text" name="name" placeholder="name">
+<input type="text" name="username" placeholder="username" value="supervisor@<%=hostel.number%>" readonly>
+<input type="password" name="password" placeholder="password">
+<input type="email" name="email" placeholder="Email">
+<input type="number" name="mobileNo" placeholder="Mobile Number">
+<input type="submit">
+</form>

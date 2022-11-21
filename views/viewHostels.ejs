@@ -1,0 +1,11 @@
+<h1>Hostels list</h1>
+<% data.forEach((hostel)=>{ %>
+    <h3><%=hostel%></h3>
+    <a href="/addStudents/<%= hostel._id%>">Add students</a>
+    <% if(!hostel.warden){ %>
+        <a href="/addWarden/<%= hostel._id%>">Add Warden</a>
+    <% } %>
+    <% if(!hostel.supervisor){ %>
+        <a href="/addSupervisor/<%= hostel._id%>">Add Supervisor</a>
+    <% } %>
+<% }) %>
