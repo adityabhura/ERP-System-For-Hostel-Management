@@ -31,7 +31,8 @@ router.post("/complain",(req,res)=>{
     var description=req.body.description;
     var contact=req.body.contact;
     var email=req.body.email;
-    var resolved=false;
+    var supervisorResolved=false;
+    var studentResolved=false;
     Complain.create({
         roomtemp,
         type,
@@ -39,7 +40,8 @@ router.post("/complain",(req,res)=>{
         description,
         contact,
         email,
-        resolved
+        supervisorResolved,
+        studentResolved
     },(err,complain)=>{
         if(err)res.send(err);
         else{
@@ -48,8 +50,16 @@ router.post("/complain",(req,res)=>{
                 else{
                     complain.student=student._id;
                     student.myComplains.push(complain._id);
-                    complain.save();
+                    //complain.save();
                     student.save();
+                    //res.send(complain)
+                    Hostel.findById(student.room.hostel,(err,hostel)=>{
+                        hostel.complains.push(complain._id);
+                        complain.hostel=hostel._id;
+                        complain.save();
+                        hostel.save();
+                        res.redirect("/myComplains");
+                    })
                 }
             })
         }

@@ -6,7 +6,7 @@
     <br>
     <% if(!student.room.hostel){ %>
         <form action="/addStudents/<%=hostel._id%>/<%=student._id%>" method="POST">
-            <button type="submit">Add the student to <%= hostel.name %></submit>
+            <button type="submit">Add the student to <%= hostel.name %></button>
         </form>
     <% }else{ %>
         Added to a hostel

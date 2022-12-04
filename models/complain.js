@@ -27,7 +27,8 @@ var ComplainSchema=new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"Student"
     },
-    resolved:Boolean
+    supervisorResolved:Boolean,
+    studentResolved:Boolean
 });
 
 module.exports=mongoose.model("Complain",ComplainSchema);

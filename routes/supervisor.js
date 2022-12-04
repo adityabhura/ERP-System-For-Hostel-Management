@@ -12,6 +12,7 @@ const Hostel = require("../models/hostel.js");
 const Warden = require("../models/warden.js");
 const Supervisor = require("../models/supervisor.js");
 const Student = require("../models/student.js");
+const Complain = require("../models/complain.js");
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
@@ -80,7 +81,7 @@ router.post("/addSupervisor/:hostelId",(req,res)=>{
                             hostel.supervisor=supervisor._id;
                             supervisor.save();
                             hostel.save();
-                            res.send(hostel);
+                            res.redirect("/viewHostels")
                         }
                     })
                 }           
@@ -123,6 +124,13 @@ router.post("/supervisorLogin", (req, res, next) => {
 
 router.get("/supervisorDashBoard",(req,res)=>{
     res.render("supervisorDashboard");
+})
+
+//View the complains page
+router.get("/viewComplains",(req,res)=>{
+  Hostel.findById(req.user.hostel).populate({path:"complains",model:Complain}).exec((err,hostel)=>{
+      res.render("viewComplains",{data:hostel.complains});
+  })
 })
 
 module.exports = router;

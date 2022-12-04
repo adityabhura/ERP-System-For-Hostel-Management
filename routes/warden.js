@@ -75,7 +75,7 @@ router.post("/addWarden/:hostelId",(req,res)=>{
                             hostel.warden=warden._id;
                             warden.save();
                             hostel.save();
-                            res.send(hostel);
+                            res.redirect("/viewHostels")
                         }
                     })
                 }           

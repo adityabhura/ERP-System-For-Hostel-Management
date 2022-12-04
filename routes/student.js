@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const bodyParser=require("body-parser");
 const student = require("../models/student.js");
+const Complain=require("../models/complain.js")
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
@@ -31,7 +32,7 @@ router.post("/studentRegister",(req,res) => {
         instituteEmail,
         personalEmail,
         mobileNo} = req.body;
-        username=req.body.scholarId;
+        username=req.body.scholarId.toString();
     //If any field is empty send back error 
     if (!name  ||  !password || !address || !City || !State || !Country || !Pin || !scholarId || !instituteEmail || !personalEmail || !mobileNo) {
       err = "Please fill all the fields";
@@ -121,7 +122,11 @@ router.post("/studentRegister",(req,res) => {
     })(req, res, next);
   });
 
- 
+  router.get("/myComplains",(req,res)=>{
+    student.findById(req.user._id).populate({path:"myComplains",model:Complain}).exec((err,student)=>{
+        res.render("myComplains",{data:student.myComplains});
+    })
+})
 
 
 module.exports = router;

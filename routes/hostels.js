@@ -115,7 +115,8 @@ router.post("/addStudents/:hostelId/:studentId",(req,res)=>{
                     student.room.hostel=hostel._id;
                     hostel.save();
                     student.save();
-                    res.send(student);
+                    // res.send(student);
+                    res.redirect("/viewHostels");
                 }
             })
         }
