@@ -1,4 +1,5 @@
 var mongoose=require("mongoose");
+const complain = require("./complain");
 
 var HostelSchema=new mongoose.Schema({
     name:{
@@ -29,6 +30,10 @@ var HostelSchema=new mongoose.Schema({
     students:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Student"
+    }],
+    complains:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Complain"
     }]
 });
 

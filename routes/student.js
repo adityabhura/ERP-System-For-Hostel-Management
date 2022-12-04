@@ -8,46 +8,6 @@ const mongoose = require("mongoose");
 const bodyParser=require("body-parser");
 const student = require("../models/student.js");
 
-
-router.use(cookieParser("secret"));
-router.use(
-  session({
-    secret: "secret",
-    maxAge: 3600000,
-    resave: true,
-    saveUninitialized: true,
-  })
-);
-router.use(passport.initialize());
-router.use(passport.session());
-
-passport.serializeUser(function (user, cb) {
-    cb(null, user.id);
-  });
-  
-  passport.deserializeUser(function (id, cb) {
-    student.findById(id, function (err, user) {
-      if (err) cb(err);
-      if (user) cb(null, user);
-      else {
-        student.findById(id, function (err, user) {
-          if (err) cb(err);
-          cb(null, user);
-        })
-      }
-    });
-  });
-
-const ensureAuthenticated = function (req, res, next) {
-    if (req.isAuthenticated()) {
-      res.set(
-        "Cache-Control",
-        "no-cache,private,no-store,must-revalidate,post-check=0,pre-check=0"
-      );
-      return next();
-    } else res.redirect("/studentLogin");
-};
-
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
@@ -71,6 +31,7 @@ router.post("/studentRegister",(req,res) => {
         instituteEmail,
         personalEmail,
         mobileNo} = req.body;
+        username=req.body.scholarId;
     //If any field is empty send back error 
     if (!name  ||  !password || !address || !City || !State || !Country || !Pin || !scholarId || !instituteEmail || !personalEmail || !mobileNo) {
       err = "Please fill all the fields";
@@ -99,7 +60,7 @@ router.post("/studentRegister",(req,res) => {
               password = hash;
               student({
                 name,
-                //username, 
+                username, 
                 password,
                 address,
                 City,
@@ -149,13 +110,13 @@ router.post("/studentRegister",(req,res) => {
   });
 
   router.get("/studentDashboard",(req,res)=>{
-    res.render("studentDashbaord",{data:req.user});
+    res.render("studentDashboard");
   })
   
   router.post("/studentLogin", (req, res, next) => {
     passport.authenticate("student", {
       failureRedirect: "/studentLogin",
-      successRedirect: "/student",
+      successRedirect: "/studentDashboard",
       //failureFlash: true,
     })(req, res, next);
   });

@@ -1,5 +1,10 @@
+<%= currentUser %>
 <h2>Complain Page</h2>
 <form action="/complain" method="POST">
+
+    <label for="room">Room Number:</label>
+    <input type="text" name="room" id="room"></input><br>
+
     <label for="type">Complain Type:</label>
     <select name="type" id="type">
         <option value="inside">Inside Room</option>
@@ -15,8 +20,14 @@
         <option value="Others">Others</option>
     </select><br><br>
 
-    <label for="description">Description:</label>
+    <label for="description">Description: </label>
     <textarea name="description" id="description"></textarea><br><br>
+
+    <label for="contact">Contact Number: </label>
+    <input type="number" name="contact" placeholder="Contact Number" id="contact"><br><br>
+    
+    <label for="email">Email: </label>
+    <input type="email" name="email" placeholder="Email" id="email"><br><br>
 
     <input type="submit">
 </form>

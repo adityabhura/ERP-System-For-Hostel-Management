@@ -11,6 +11,10 @@ var adminSchema=new mongoose.Schema({
     students:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Student"
+    }],
+    complains:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Complain"
     }]
 });
 

@@ -11,6 +11,10 @@ var WardenSchema=new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"Hostel"
     },
+    hostelComplains:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Complain"
+    }]
 });
 
 WardenSchema.plugin(passportLocalMongoose);

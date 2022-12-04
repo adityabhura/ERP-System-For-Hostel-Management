@@ -13,45 +13,6 @@ const Warden = require("../models/warden.js");
 const Supervisor = require("../models/supervisor.js");
 const Student = require("../models/student.js");
 
-router.use(cookieParser("secret"));
-router.use(
-  session({
-    secret: "secret",
-    maxAge: 3600000,
-    resave: true,
-    saveUninitialized: true,
-  })
-);
-router.use(passport.initialize());
-router.use(passport.session());
-
-passport.serializeUser(function (user, cb) {
-    cb(null, user.id);
-  });
-  
-  passport.deserializeUser(function (id, cb) {
-    Supervisor.findById(id, function (err, user) {
-      if (err) cb(err);
-      if (user) cb(null, user);
-      else {
-        Supervisor.findById(id, function (err, user) {
-          if (err) cb(err);
-          cb(null, user);
-        })
-      }
-    });
-  });
-
-const ensureAuthenticated = function (req, res, next) {
-    if (req.isAuthenticated()) {
-      res.set(
-        "Cache-Control",
-        "no-cache,private,no-store,must-revalidate,post-check=0,pre-check=0"
-      );
-      return next();
-    } else res.redirect("/studentLogin");
-};
-
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
