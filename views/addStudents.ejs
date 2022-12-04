@@ -1,4 +1,76 @@
-<h1>Add studnets to  <%= hostel.name %></h1>
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+    body {
+    background-color: #eee!important;
+}
+
+.login {
+    background-color: #fff;
+    width: 60%;
+    margin: 20px auto;
+    border-radius: 10px;
+    padding: 20px;
+    /* border-left: 5px solid #009688; */
+    box-shadow: 0px 0px 0px 0px #3f51b5;
+}
+
+.login>.row>h2 {
+    margin: auto;
+}
+
+.btn-form {
+    width: 100%;
+    margin-top: 20px;
+}
+</style>
+
+<body>
+    <div class="container">
+        <form action="/addSupervisor/<%=hostel._id%>" method="post">
+        <div class="login">
+            <div class="row">
+                <div class="col-md-12" style="text-align:center"><h2>Add Students to <%= hostel.name %></h2></div>
+                <div class="col-md-12" style="text-align:center"><h2>Student's list</h2></div>
+                <% students.forEach((student)=>{ %>
+                    <div class="col-md-12">
+                    -> Name: <%= student.name %>, Scholar Id: <%= student.scholarId %>
+                    <br>
+                    <% if(!student.room.hostel){ %>
+                        <form action="/addStudents/<%=hostel._id%>/<%=student._id%>" method="POST">
+                            <button type="submit" class="btn btn-outline-primary btn-form" style="margin:0;">Add <%= student.name %> to Hostel <%= hostel.number %> (<%=hostel.name%>)</button>
+                        </form>
+                    <% }else{ %>
+                        <% if(student.room.hostel.equals(hostel._id)){ %>
+                            <button class="btn btn-outline-success btn-form" disabled style="margin:0;">This student is added to this Hostel</button>
+                        <% }else{ %>
+                            <button class="btn btn-outline-success btn-form" disabled style="margin:0;">This student is added to different Hostel</button>
+                        <% } %>
+                    <% } %>
+                    </div>
+                <% }) %> 
+            </div>
+            <br>
+        </div>
+        </form>
+    </div>
+</body>
+</html>
+
+
+<!-- <h1>Add studnets to  <%= hostel.name %></h1>
 <% students.forEach((student)=>{ %>
     <p>
     <%= student.name %>
@@ -12,4 +84,4 @@
         Added to a hostel
     <% } %>
     </p>
-<% }) %> 
+<% }) %>  -->

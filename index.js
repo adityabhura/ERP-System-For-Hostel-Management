@@ -11,6 +11,7 @@ const Warden = require("./models/warden.js");
 const Supervisor = require("./models/supervisor.js");
 const Student = require("./models/student.js");
 
+app.use(express.static("style"));
 
 app.use(cookieParser("secret"));
 app.use(
@@ -21,12 +22,13 @@ app.use(
     // saveUninitialized: true,
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 
 passport.serializeUser(function (user, cb) {
     cb(null, user.id);
-  });
+});
   
 passport.deserializeUser(function (id, cb) {
     Admin.findById(id, function (err, user) {

@@ -1,7 +1,94 @@
-   <h1> Student Register</h1>
+   
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+    body {
+    background-color: #eee!important;
+}
+
+.login {
+    background-color: #fff;
+    width: 40%;
+    margin: 80px auto;
+    border-radius: 10px;
+    padding: 20px;
+    /* border-left: 5px solid #009688; */
+    box-shadow: 0px 0px 0px 0px #3f51b5;
+}
+
+.login>.row>h2 {
+    margin: auto;
+}
+
+.btn-form {
+    width: 100%;
+    margin-top: 20px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+</style>
+
+<body>
+    <div class="container">
+        <form action="/studentRegister" method="post">
+        <div class="login">
+            <div class="row">
+                <h2>Student Registration</h2>
+                <div class="col-md-12">
+                    <input type="text" class="form-control" id="name" placeholder="Name" name="name">
+                    <input type="password" class="form-control" id="password" placeholder="Ex. A123@paswod" name="password">
+                    <input type="text" class="form-control" id="address" placeholder="Address" name="address">
+                    <input type="text" class="form-control" name="City" placeholder="City">
+                    <input type="text" class="form-control" name="State" placeholder="State">
+                    <input type="text" class="form-control" name="Country" placeholder="Country">
+                    <input type="number" class="form-control" name="Pin" placeholder="Pin">
+                    <input type="number" class="form-control" name="scholarId" placeholder="Scholar Id">
+                    <input type="email" class="form-control" name="instituteEmail" placeholder="Instittue Email">
+                    <input type="email" class="form-control" name="personalEmail" placeholder="Personal Email">
+                    <input type="number" class="form-control" name="mobileNo" placeholder="Mobile No.">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="reset" id="reset" value="Reset" class="btn btn-outline-primary btn-form">
+                </div>
+                <div class="col-md-6">
+                    <input type="submit" id="register" value="Register" class="btn btn-outline-success btn-form">
+                        </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-12"><center><a href="/" style="text-decoration: none;">Go to Home Page</a></center></div>
+            </div>
+        </div>
+        </form>
+    </div>
+    </body>
+</html>
+   
+   
+   <!-- <h1> Student Register</h1>
     <form action="/studentRegister" method="post">
     <input type="text" name="name" placeholder="name">
-    <!-- <input type="text" name="username" placeholder="username"> -->
     <input type="password" name="password" placeholder="password">
     <input type="text" name="address" placeholder="address">
     <input type="text" name="City" placeholder="City">
@@ -13,4 +100,4 @@
     <input type="email" name="personalEmail" placeholder="Personal Email">
     <input type="number" name="mobileNo" placeholder="Mobile No.">
     <input type="submit">
-</form>
+</form> -->
