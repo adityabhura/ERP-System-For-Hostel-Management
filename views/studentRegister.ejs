@@ -10,16 +10,20 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    
+
+    <!--For navbar-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="./index.css">
+    
 </head>
 
 <style>
-    body {
-    background-color: #eee!important;
-}
 
 .login {
-    background-color: #fff;
+
+    background-color: #000000ba;
+    color: white;
     width: 40%;
     margin: 80px auto;
     border-radius: 10px;
@@ -37,34 +41,103 @@
     margin-top: 20px;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    margin: 0; 
-}
+
 
 </style>
 
 <body>
-    <div class="container">
+    <div class="background"></div>
+<section class="navigation">
+  <div class="nav-container">
+    <div class="brand">
+      <a href="#">Hostel Management System</a>
+    </div>
+    <nav>
+      <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+      <ul class="nav-list">
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="adminLogin">Admin Login</a>
+        </li>
+        <li>
+          <a href="#">Students</a>
+          <ul class="nav-dropdown">
+            <li>
+              <a href="#">Student Registration</a>
+            </li>
+            <li>
+              <a href="/studentLogin">Student Login</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+            <a href="#">Hostel Administration</a>
+            <ul class="nav-dropdown">
+              <li>
+                <a href="/supervisorLogin">Supervisor Login</a>
+              </li>
+              <li>
+                <a href="/wardenLogin">Warden Login</a>
+              </li>
+            </ul>
+          </li>
+      </ul>
+    </nav>
+  </div>
+</section>
+
+    <div class="container1">
         <form action="/studentRegister" method="post">
         <div class="login">
             <div class="row">
                 <h2>Student Registration</h2>
                 <div class="col-md-12">
+                    <label for="name">Name</label>
                     <input type="text" class="form-control" id="name" placeholder="Name" name="name">
+                    <label for="password">Password</label>
                     <input type="password" class="form-control" id="password" placeholder="Ex. A123@paswod" name="password">
-                    <input type="text" class="form-control" id="address" placeholder="Address" name="address">
-                    <input type="text" class="form-control" name="City" placeholder="City">
-                    <input type="text" class="form-control" name="State" placeholder="State">
-                    <input type="text" class="form-control" name="Country" placeholder="Country">
-                    <input type="number" class="form-control" name="Pin" placeholder="Pin">
+                    <label for="batch">Batch</label>
+                    <select class="form-control" name="batch" placeholder="Batch (Passout Year)" id="batch">
+                        <option value=2023>2023</option>
+                        <option value=2024>2024</option>
+                        <option value=2025>2026</option>
+                        <option value=2026>2026</option>
+                    </select>
+                    <label for="course">Course</label>
+                    <select class="form-control" name="course" placeholder="Course" id="course">
+                        <option value="B.Tech">B.Tech</option>
+                        <option value="M.Tech">M.Tech</option>
+                        <option value="PHD">PHD</option>
+                    </select>
+                    <label for="Branch">Branch</label>
+                    <select class="form-control" name="branch" placeholder="branch" id="branch">
+                        <option value="CE">CE</option>
+                        <option value="CSE">CSE</option>
+                        <option value="EE">EE</option>
+                        <option value="ECE">ECE</option>
+                        <option value="EIE">EIE</option>
+                        <option value="ME">ME</option>
+                    </select>
+                    <label for="scholarId">Scholar ID</label>
                     <input type="number" class="form-control" name="scholarId" placeholder="Scholar Id">
-                    <input type="email" class="form-control" name="instituteEmail" placeholder="Instittue Email">
+                    <label for="instituteEmail">Institute Email</label>
+                    <input type="email" class="form-control" name="instituteEmail" placeholder="Institute Email">
+                    <label for="personalEmail">Personal Email</label>
                     <input type="email" class="form-control" name="personalEmail" placeholder="Personal Email">
+                    <label for="mobileNo">Mobile No.</label>
                     <input type="number" class="form-control" name="mobileNo" placeholder="Mobile No.">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" id="address" placeholder="Address" name="address">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" name="City" placeholder="City" id="city">
+                    <label for="state">State</label>
+                    <input type="text" class="form-control" name="State" placeholder="State" id="state">
+                    <label for="country">Country</label>
+                    <input type="text" class="form-control" name="Country" placeholder="Country" id="country">
+                    <label for="pin">Pin</label>
+                    <input type="number" class="form-control" name="Pin" placeholder="Pin" id="pin">
                 </div>
             </div>
             <div class="row">
@@ -82,6 +155,13 @@ input[type=number]::-webkit-outer-spin-button {
         </div>
         </form>
     </div>
+
+    <footer style="position: relative;">
+        &copy; 2023 ERP System for Hostel Management in NITS. All rights reserved.
+    </footer> 
+
+    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./indexScript.js"></script>
+
     </body>
 </html>
    

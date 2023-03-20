@@ -27,6 +27,7 @@ var ComplainSchema=new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"Student"
     },
+    date:{type:Date,default:Date.now},
     supervisorResolved:Boolean,
     studentResolved:Boolean
 });

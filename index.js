@@ -89,6 +89,18 @@ app.get("/test",function(req,res){
     res.send("Success");
 })
 
+app.get("/noticeBoard",(req,res)=>{
+  res.render("noticeboard")
+})
+
+app.get("/noticeForm",(req,res)=>{
+  res.render("addNotice")
+})
+
+app.get("/notice/:id",(req,res)=>{
+  res.render("notice");
+})
+
 mongoose.connect("mongodb+srv://aditya:1914033@cluster0.8a8afij.mongodb.net/?retryWrites=true&w=majority",function(res,req){
     console.log("Database connected");
 });

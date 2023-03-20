@@ -1,4 +1,206 @@
-<h1>Hostels list</h1>
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>View List</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="../index.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<style>
+
+body {
+    background-color: #eee!important;
+}
+
+  main {
+    margin-left: 17.5%;
+  }
+    /* Set the width of the side navigation menu */
+  .sidenav {
+    height: 100vh;
+    width: 17.5%;
+    position: fixed;
+    z-index: 1;   
+    left: 0;
+    background-color: #262626;
+    overflow-x: hidden;
+    padding-top: 10px;
+  }
+  
+  /* Style the links inside the side navigation menu */
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #f2f2f2;
+    display: block;
+  }
+  
+  /* Add a background color to the active link in the side navigation menu */
+  .sidenav a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  /* Style the side navigation menu for small screens */
+  @media screen and (max-height: 450px) {
+    .sidenav {
+      padding-top: 15px;
+    }
+  
+    .sidenav a {
+      font-size: 18px;
+    }
+  }
+
+  /* For table */
+  .table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centered-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.centered-table th,
+.centered-table td {
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+}
+  
+  </style>
+
+</head>
+<body>
+<section class="navigation">
+  <div class="nav-container" style="max-width:95%;">
+    <div class="brand" style="padding:0px">
+      <a href="#" style="text-decoration: none;">Hostel Management System</a>
+    </div>
+    <nav>
+      <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+    </nav>
+  </div>
+</section>
+
+<div class="sidenav">
+  <a href="/admin/dashboard">Dashboard</a>
+  <a href="#" class="active">View Hostels</a>
+  <a href="/addHostels">Add Hostels</a>
+  <a href="#">Student Details</a>
+  <a href="/addByFile">Register Students</a>
+  <a href="#">Allot Hostels to Students</a>
+  <a href="#">Hostel Administration</a>
+  <a href="#">Complaints</a>
+</div>
+
+<main>
+  <article style="max-width:90%;">
+    <h2>HOSTEL LIST</h2>
+    <!-- <p>
+        <% data.forEach((hostel)=>{ %>
+            -> Hostel Name: <%= hostel.name %><br>
+            Hostel number: <%= hostel.number %><br>
+            <% if(hostel.warden){ %>
+                Warden Name: <%= hostel.warden.name%><br>
+            <% }else{ %>
+                Warden Name: Not added (<a href="/addWarden/<%= hostel._id%>">Add Warden</a>)<br>
+            <% } %>
+
+            <% if(hostel.supervisor){ %>
+                Supervisor Name: <%= hostel.supervisor.name%><br>
+            <% }else{ %>
+                Supervisor Name: Not added (<a href="/addSupervisor/<%= hostel._id%>">Add Supervisor</a>)<br>
+            <% } %>
+            
+            No. of Single bed rooms: <%= hostel.capacity.singleBed%><br>
+            No. of Double bed rooms: <%= hostel.capacity.doubleBed%><br>
+            No. of Triple bed rooms: <%= hostel.capacity.tripleBed%><br>
+    
+            <a href="/addStudents/<%= hostel._id%>">Add students</a><br><br>
+        <% }) %>
+    </p> -->
+    <div class="table-container">
+      <table class="centered-table">
+        <thead>
+          <tr>
+            <th>Hostel Name</th>
+            <th>Hostel Number</th>
+            <th>Hostel Warden</th>
+            <th>Hostel Supervisor</th>
+            <th>No. of Single bed rooms</th>
+            <th>No. of double bed rooms</th>
+            <th>No. of triple bed rooms</th>
+            <th>Allot Students to Hostels</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% data.forEach((hostel)=>{ %>
+            <tr>
+              <td><%=hostel.name%></td>
+              <td><%=hostel.number%></td>
+              <td><% if(hostel.warden){ %>
+                    <%= hostel.warden.name%><br>
+                  <% }else{ %>
+                    Warden Name: Not added (<a href="/addWarden/<%= hostel._id%>">Add Warden</a>)<br>
+                  <% } %>
+              </td>
+              <td><% if(hostel.supervisor){ %>
+                    <%= hostel.supervisor.name%><br>
+                  <% }else{ %>
+                    Not added (<a href="/addSupervisor/<%= hostel._id%>">Add Supervisor</a>)<br>
+                  <% } %>
+              </td>
+              <td><%= hostel.capacity.singleBed%></td>
+              <td><%= hostel.capacity.doubleBed%></td>
+              <td><%= hostel.capacity.tripleBed%></td>
+              <td><a href="/addStudents/<%= hostel._id%>">Add students</a></td>
+            </tr>
+        <% }) %>
+          
+        </tbody>
+      </table>
+    </div>
+</article>
+</main>
+
+
+<script>
+  // Get all links inside the side navigation menu
+var sidenavLinks = document.querySelectorAll('.sidenav a');
+
+// Loop through each link and add an event listener
+sidenavLinks.forEach(function(link) {
+link.addEventListener('click', function() {
+// Remove the 'active' class from all links
+sidenavLinks.forEach(function(link) {
+link.classList.remove('active');
+});
+
+// Add the 'active' class to the clicked link
+this.classList.add('active');
+});
+});
+</script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="../indexScript.js"></script>
+
+
+<!--Bootstrap-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+
+<!-- <h1>Hostels list</h1>
 <% data.forEach((hostel)=>{ %>
     <h3><%=hostel%></h3>
     <a href="/addStudents/<%= hostel._id%>">Add students</a>
@@ -8,4 +210,4 @@
     <% if(!hostel.supervisor){ %>
         <a href="/addSupervisor/<%= hostel._id%>">Add Supervisor</a>
     <% } %>
-<% }) %>
+<% }) %> -->

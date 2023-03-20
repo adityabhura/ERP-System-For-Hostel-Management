@@ -1,2 +1,186 @@
-<a href="/viewHostels">View Hostels</a><br>
-<a href="/addHostels">Add Hostels</a>
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="../index.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<style>
+
+body {
+    background-color: #eee!important;
+}
+
+main {
+  margin-left: 17.5%;
+}
+  /* Set the width of the side navigation menu */
+.sidenav {
+  height: 100vh;
+  width: 17.5%;
+  position: fixed;
+  z-index: 1;   
+  left: 0;
+  background-color: #262626;
+  overflow-x: hidden;
+  padding-top: 10px;
+}
+
+/* Style the links inside the side navigation menu */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #f2f2f2;
+  display: block;
+}
+
+/* Add a background color to the active link in the side navigation menu */
+.sidenav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Style the side navigation menu for small screens */
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+</style>
+
+</head>
+<body>
+<section class="navigation">
+  <div class="nav-container" style="max-width:95%;">
+    <div class="brand" style="padding:0px">
+      <a href="#" style="text-decoration: none;">Hostel Management System</a>
+    </div>
+    <nav>
+      <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+    </nav>
+  </div>
+</section>
+
+<div class="sidenav">
+  <a href="#" class="active">Dashboard</a>
+  <a href="/viewHostels">View Hostels</a>
+  <a href="/addHostels">Add Hostels</a>
+  <a href="#">Student Details</a>
+  <a href="/addByFile">Register Students</a>
+  <a href="#">Allot Hostels to Students</a>
+  <a href="#">Hostel Administration</a>
+  <a href="#">Complaints</a>
+</div>
+
+<main>
+  <article style="max-width:90%;">
+    <!-- <h2>ADMIN DASHBOARD</h2>
+    <p><a href="/viewHostels">View Hostels</a><br><br>
+      <a href="/addHostels">Add Hostels</a></p> -->
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">View Hostels</h5>
+              <p class="card-text">View all hostels and their details.</p><br>
+              <center><a href="/viewHostels" class="btn btn-light">Go</a></center>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Add Hostels</h5>
+              <p class="card-text">Add Hostels to your collage database.</p>
+              <center><a href="/addHostels" class="btn btn-light">Go</a></center>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Student Details</h5>
+              <p class="card-text">View and edit student's details.</p><br>
+              <center><a href="#" class="btn btn-light">Go</a></center>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Register Students</h5>
+              <p class="card-text">Upload Excel file in the specific format containing students details to register multiple students in a single go.</p>
+              <center><a href="/addByFile" class="btn btn-light">Go</a></center>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Allot Hostels to Students</h5>
+              <p class="card-text">Add students to different hostels in the college database.</p><br><br>
+              <center><a href="#" class="btn btn-light">Go</a></center>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Complaints</h5>
+              <p class="card-text">View complaints of students from different hostels.</p><br><br>
+              <center><a href="#" class="btn btn-light">Go</a></center>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </article>
+  </main>
+
+
+
+
+<script>
+  // Get all links inside the side navigation menu
+var sidenavLinks = document.querySelectorAll('.sidenav a');
+
+// Loop through each link and add an event listener
+sidenavLinks.forEach(function(link) {
+link.addEventListener('click', function() {
+// Remove the 'active' class from all links
+sidenavLinks.forEach(function(link) {
+link.classList.remove('active');
+});
+
+// Add the 'active' class to the clicked link
+this.classList.add('active');
+});
+});
+</script>
+<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="../indexScript.js"></script>
+
+
+<!--Bootstrap-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+
+<!-- <a href="/viewHostels">View Hostels</a><br>
+<a href="/addHostels">Add Hostels</a> -->

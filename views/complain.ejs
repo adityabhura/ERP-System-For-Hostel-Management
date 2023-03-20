@@ -9,21 +9,25 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="../index.css">
 </head>
 
 <style>
-    body {
+        body {
     background-color: #eee!important;
 }
 
 .login {
     background-color: #fff;
-    width: 75%;
-    margin: 80px auto;
     border-radius: 10px;
-    padding: 20px;
+    padding: 10px;
+    border: solid;
+    border-color:#4CAF50 ;
+    border-width: 2px;
     /* border-left: 5px solid #009688; */
     box-shadow: 0px 0px 0px 0px #3f51b5;
 }
@@ -39,53 +43,77 @@
 </style>
 
 <body>
-    <div class="container">
-        <form action="/complain" method="post">
-        <div class="login">
-            <div class="row">
-                <h2 style="margin-bottom:5%;">Complain Page</h2>
-                <div class="col-md-12">
-                    <label for="room">Room Number:</label>
-                    <input type="text" class="form-control"  name="room" id="room" placeholder="Room Number"></input><br>
 
-                    <label for="type">Complain Type:</label>
-                    <select class="form-control"  name="type" id="type">
-                        <option value="inside">Inside Room</option>
-                        <option value="outside">Outside room/General complain</option>
-                    </select><br>
-
-                    <label for="problem">Problem:</label>
-                    <select class="form-control" name="problem" id="problem">
-                        <option value="Furniture">Furniture</option>
-                        <option value="Electricity">Electricity</option>
-                        <option value="LAN">LAN</option>
-                        <option value="Doors and Windows">Doors and Windows</option>
-                        <option value="Others">Others</option>
-                    </select><br>
-
-                    <label for="description">Description: </label>
-                    <textarea class="form-control" name="description" id="description" placeholder="Problem Description" style="width:100%;height:20%"></textarea><br>
-
-                    <label for="contact">Contact Number: </label>
-                    <input class="form-control" type="number" name="contact" placeholder="Contact Number" id="contact" value="<%= currentUser.mobileNo %>"><br>
-    
-                    <label for="email">Email: </label>
-                    <input class="form-control" type="email" name="email" placeholder="Email" id="email" value="<%= currentUser.instituteEmail %>"><br><br><br>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <input type="reset" id="reset" value="Reset" class="btn btn-outline-primary btn-form">
-                </div>
-                <div class="col-md-6">
-                    <input type="submit" id="register" value="Submit" class="btn btn-outline-success btn-form">
-                </div>
-            </div>
-            <br>
+    <section class="navigation">
+        <div class="nav-container" style="max-width:95%;">
+          <div class="brand" style="padding:0px">
+            <a href="#" style="text-decoration: none;">Hostel Management System</a>
+          </div>
+          <nav>
+            <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+          </nav>
         </div>
-        </form>
+      </section>
+      
+      <div class="sidenav">
+        <a href="/studentDashboard">Student's Dashboard</a>
+        <a href="#" class="active">Register a Complaint</a>
+        <a href="/myComplains">My complaints</a>
+        <a href="/notice">Notice Board</a>
+      </div>
+
+    <main>
+    <article style="max-width:90%;">
+    <div class="container1">
+        <h2>Complaint Registration</h2>
+
+                <form action="/complain" method="post">
+                <div class="login">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="room"><b>Room Number:</b></label>
+                            <input type="text" class="form-control"  name="room" id="room" placeholder="Room Number"></input>
+        
+                            <label for="type"><b>Complain Type:</b></label>
+                            <select class="form-control"  name="type" id="type">
+                                <option value="inside">Inside Room</option>
+                                <option value="outside">Outside room/General complain</option>
+                            </select>
+        
+                            <label for="problem"><b>Problem:</b></label>
+                            <select class="form-control" name="problem" id="problem">
+                                <option value="Furniture">Furniture</option>
+                                <option value="Electricity">Electricity</option>
+                                <option value="LAN">LAN</option>
+                                <option value="Doors and Windows">Doors and Windows</option>
+                                <option value="Others">Others</option>
+                            </select>
+        
+                            <label for="description"><b>Description: </b></label>
+                            <textarea class="form-control" name="description" id="description" placeholder="Problem Description" style="width:100%;height:15%"></textarea>
+        
+                            <label for="contact"><b>Contact Number:</b></label>
+                            <input class="form-control" type="number" name="contact" placeholder="Contact Number" id="contact" value="<%= currentUser.mobileNo %>">
+            
+                            <label for="email"><b>Email:</b></label>
+                            <input class="form-control" type="email" name="email" placeholder="Email" id="email" value="<%= currentUser.instituteEmail %>"><br>
+        
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="reset" id="reset" value="Reset" class="btn btn-outline-primary btn-form">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="submit" id="register" value="Add complaint" class="btn btn-outline-success btn-form">
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                </form>
     </div>
+    </article>
+    </main>
 </body>
 </html>
 

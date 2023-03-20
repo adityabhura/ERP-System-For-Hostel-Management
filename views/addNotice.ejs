@@ -99,29 +99,25 @@ main {
       </section>
       
       <div class="sidenav">
-        <a href="/admin/dashboard">Dashboard</a>
-        <a href="/viewHostels">View Hostels</a>
-        <a href="#" class="active">Add Hostels</a>
-        <a href="#">Student Details</a>
-        <a href="/addByFile">Register Students</a>
-        <a href="#">Allot Hostels to Students</a>
-        <a href="#">Hostel Administration</a>
-        <a href="#">Complaints</a>
+        <a href="#">Supervisor's Dashboard</a>
+        <a href="/viewComplains">View Complaints</a>
+        <a href="#">View Student's in Hostel</a>
+        <a href="#" class="active">Add Notice</a>
+        <a href="#">Notice Board</a>
+        <a href="#">Allot Rooms to students</a>
       </div>
 
     <main>
         <article style="max-width:90%;">
-            <h2>Add Hostels</h2>
+            <h2>Add Notice</h2>
 
                 <form action="/addHostels" method="post">
                 <div class="login">
                     <div class="row">
                         <div class="col-md-12">
-                            <b>Hostel Name:</b><input type="text" class="form-control" name="name" placeholder="Hostel Name">
-                            <b>Hostel Number:</b> <input type="text" class="form-control" name="number" placeholder="Hostel Number">
-                            <b>Number of Single Bed Rooms:</b> <input type="number" class="form-control" name="single" placeholder="No. of single rooms">
-                            <b>Number of Double Bed Rooms:</b> <input type="number" class="form-control" name="double" placeholder="No. of double rooms">
-                            <b>Number of Triple Bed Rooms:</b><input type="number" class="form-control" name="triple" placeholder="No. of triple rooms">
+                            <b>Title</b><input type="text" class="form-control" name="name" placeholder="Title">
+                            <b>Description</b> <textarea class="form-control" name="description" id="description" placeholder="Description" style="width:100%;height:30%"></textarea>
+                            <b>Add Attachments</b> <input type="file" class="form-control" multiple="multiple">
                         </div>
                     </div>
                     <div class="row">
@@ -129,7 +125,7 @@ main {
                             <input type="reset" id="reset" value="Reset" class="btn btn-outline-primary btn-form">
                         </div>
                         <div class="col-md-6">
-                            <input type="submit" id="register" value="Add Hostel" class="btn btn-outline-success btn-form">
+                            <input type="submit" id="register" value="Upload" class="btn btn-outline-success btn-form">
                         </div>
                     </div>
                     <br>

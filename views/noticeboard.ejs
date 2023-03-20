@@ -55,54 +55,43 @@ body {
 <div class="sidenav">
   <a href="/studentDashboard">Student's Dashboard</a>
   <a href="/complain">Register a Complaint</a>
-  <a href="#" class="active">My complaints</a>
-  <a href="/notice">Notice Board</a>
+  <a href="#">My complaints</a>
+  <a href="#" class="active">Notice Board</a>
 </div>
 
 <main>
 <article style="max-width:90%;">
-  <h2>My Complains</h2>
+  <h2>Notice Board</h2>
     <div class="table-container">
       <table class="centered-table">
         <thead>
           <tr>
-            <th>Room Number</th>
-            <th>Problem Type</th>
-            <th>Description</th>
-            <th>Email</th>
-            <th>Phone no.</th>
-            <th>Complain logged on:</th>
-            <th>Complain Resolved Confirmation from my side</th>
-            <th>Status on problem from Supervisor's side:</th>
+            <th>Uploaded on</th>
+            <th>Uploaded by</th>
+            <th>Title</th>
           </tr>
         </thead>
         <tbody>
-          <%  data.forEach((data)=>{  %>
             <tr>
-              <td><%= data.roomtemp %></td>
-              <td><%=data.type%></td>
-              <td><%=data.description%></td>
-              <td><%= data.email %></td>
-              <td><%= data.contact %></td>
-              <td><%= new Date() %></td>
-              <td>
-                <% if(data.studentResolved==false){ %>
-                  <form action="/studentResolved/<%= data._id %>" method="POST">
-                      <button type="submit">Complain Resolved Confirmation from my side</button><br>
-                  </form>
-                <% }else{ %>
-                  <b>The problem has been resolved</b><br>
-                <% } %>
-              </td>
-              <td>
-                <% if(data.supervisorResolved==false){ %>
-                  <b>Not Resolved</b>
-                <% }else{ %>
-                  <b>Resolved</b>
-                <% } %>
-              </td>
+                <td>20:23 PM 20/03/2023</td>
+                <th>Hostel Supervisor</th>
+                <td><a href="/notice/1">Mess bill for month of February 2023</a></td>
             </tr>
-        <% }) %>
+            <tr>
+                <td>18:12 PM 20/03/2023</td>
+                <th>Hostel Supervisor</th>
+                <td><a href="/notice/2">Mess refund of 6th semester given</a></td>
+            </tr>
+            <tr>
+                <td>13:05 PM 19/03/2023</td>
+                <th>Hostel Warden</th>
+                <td><a href="/notice/3">Installation of new water purifiers</a></td>
+            </tr>
+            <tr>
+                <td>11:34 AM 18/03/2023</td>
+                <th>Admin</th>
+                <td><a href="/notice/4">In-time notice for boys and girls</a></td>
+            </tr>
           
         </tbody>
       </table>
@@ -140,5 +129,3 @@ body {
 
 </body>
 </html>
-
-<!-- <%= data %> -->

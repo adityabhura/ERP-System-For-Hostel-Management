@@ -15,28 +15,6 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
 <link rel="stylesheet" href="../index.css">
 
 <style>
-
-body {
-    background-color: #eee!important;
-}
-    /* For table */
-    .table-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.centered-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-.centered-table th,
-.centered-table td {
-  border: 1px solid black;
-  padding: 10px;
-  text-align: center;
-}
 </style>
 
 </head>
@@ -55,58 +33,18 @@ body {
 <div class="sidenav">
   <a href="/studentDashboard">Student's Dashboard</a>
   <a href="/complain">Register a Complaint</a>
-  <a href="#" class="active">My complaints</a>
-  <a href="/notice">Notice Board</a>
+  <a href="#">My complaints</a>
+  <a href="#" class="active">Notice Board</a>
 </div>
 
 <main>
-<article style="max-width:90%;">
-  <h2>My Complains</h2>
-    <div class="table-container">
-      <table class="centered-table">
-        <thead>
-          <tr>
-            <th>Room Number</th>
-            <th>Problem Type</th>
-            <th>Description</th>
-            <th>Email</th>
-            <th>Phone no.</th>
-            <th>Complain logged on:</th>
-            <th>Complain Resolved Confirmation from my side</th>
-            <th>Status on problem from Supervisor's side:</th>
-          </tr>
-        </thead>
-        <tbody>
-          <%  data.forEach((data)=>{  %>
-            <tr>
-              <td><%= data.roomtemp %></td>
-              <td><%=data.type%></td>
-              <td><%=data.description%></td>
-              <td><%= data.email %></td>
-              <td><%= data.contact %></td>
-              <td><%= new Date() %></td>
-              <td>
-                <% if(data.studentResolved==false){ %>
-                  <form action="/studentResolved/<%= data._id %>" method="POST">
-                      <button type="submit">Complain Resolved Confirmation from my side</button><br>
-                  </form>
-                <% }else{ %>
-                  <b>The problem has been resolved</b><br>
-                <% } %>
-              </td>
-              <td>
-                <% if(data.supervisorResolved==false){ %>
-                  <b>Not Resolved</b>
-                <% }else{ %>
-                  <b>Resolved</b>
-                <% } %>
-              </td>
-            </tr>
-        <% }) %>
-          
-        </tbody>
-      </table>
-    </div>
+<article style="max-width:90%;margin: 0; font-size: 20px;">
+    <h2>NOTICE</h2>
+    <p>In-time notice for boys and girls<p>
+    <p>Uploaded on: 11:34 AM 18/03/2023</p>
+    <p>Uploaded by: Admin</p>
+    <p>Dear Students,<br> PFA notice regrading the in-time of boys and girls.</p>
+    <p><embed src="../uploads/notice4.pdf" width="800px" height="400px" /></p>
 </article>
 </main>
 <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./indexScript.js"></script>
@@ -140,5 +78,3 @@ body {
 
 </body>
 </html>
-
-<!-- <%= data %> -->

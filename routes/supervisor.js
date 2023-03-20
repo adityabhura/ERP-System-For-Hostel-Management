@@ -128,8 +128,19 @@ router.get("/supervisorDashBoard",(req,res)=>{
 
 //View the complains page
 router.get("/viewComplains",(req,res)=>{
-  Hostel.findById(req.user.hostel).populate({path:"complains",model:Complain}).exec((err,hostel)=>{
+  Hostel.findById(req.user.hostel).populate({path:"complains",model:Complain,populate:{path:"student",model:Student}}).exec((err,hostel)=>{
       res.render("viewComplains",{data:hostel.complains});
+  })
+})
+
+router.post("/supervisorResolved/:complainId",(req,res)=>{
+  Complain.findById(req.params.complainId,(err,complain)=>{
+    if(err)res.send(err);
+    else{
+      complain.supervisorResolved=true;
+      complain.save();
+      res.redirect("/viewComplains")
+    }
   })
 })
 
