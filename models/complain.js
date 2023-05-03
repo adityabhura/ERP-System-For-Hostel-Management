@@ -27,9 +27,26 @@ var ComplainSchema=new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"Student"
     },
-    date:{type:Date,default:Date.now},
+    date:{type:Date,default:Date.now()},
+
     supervisorResolved:Boolean,
-    studentResolved:Boolean
+    studentResolved:Boolean,
+    
+    resolved:Boolean,
+    remarks:String,
+    resolvedBy:String,
+    resolvedOn:{type:Date},
+
+    staff:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Staff"
+    },
+
+    attachments:[{type:String}],
+
+    forwardedToWarden:{type:Boolean,default:false},
+    forwardedToAdmin:{type:Boolean,default:false},
+
 });
 
 module.exports=mongoose.model("Complain",ComplainSchema);

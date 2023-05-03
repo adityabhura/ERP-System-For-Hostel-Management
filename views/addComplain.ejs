@@ -1,0 +1,183 @@
+
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="../index.css">
+</head>
+
+<style>
+        body {
+    background-color: #eee!important;
+}
+
+.login {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    border: solid;
+    border-color:#4CAF50 ;
+    border-width: 2px;
+    /* border-left: 5px solid #009688; */
+    box-shadow: 0px 0px 0px 0px #3f51b5;
+}
+
+.login>.row>h2 {
+    margin: auto;
+}
+
+.btn-form {
+    width: 100%;
+    margin-top: 20px;
+}
+</style>
+
+<body>
+
+    <section class="navigation">
+        <div class="nav-container" style="max-width:95%;">
+          <div class="brand" style="padding:0px">
+            <a href="#" style="text-decoration: none;">Hostel Management System</a>
+          </div>
+          <nav>
+            <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+          </nav>
+        </div>
+      </section>
+      
+      <div class="sidenav">
+        <a href="/studentDashboard">Student's Dashboard</a>
+        <a href="#" class="active">Register a Complaint</a>
+        <a href="/myComplains">My complaints</a>
+        <a href="/notice">Notice Board</a>
+      </div>
+
+    <main>
+    <article style="max-width:90%;">
+    <div class="container1">
+        <h2>Complaint Registration</h2>
+
+                <form action="/complain" method="post">
+                <div class="login">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="room"><b>Room Number:</b></label>
+                            <input type="text" class="form-control"  name="room" id="room" placeholder="Room Number"></input>
+        
+                            <label for="type"><b>Complain Type:</b></label>
+                            <select class="form-control"  name="type" id="type">
+                                <option value="Inside">Inside Room</option>
+                                <option value="Outside">Outside room/General complain</option>
+                            </select>
+        
+                            <label for="problem"><b>Problem:</b></label>
+                            <select class="form-control" name="problem" id="problem">
+                                <option value="Furniture">Furniture</option>
+                                <option value="Electricity">Electricity</option>
+                                <option value="LAN">LAN</option>
+                                <option value="Doors and Windows">Doors and Windows</option>
+                                <option value="Others">Others</option>
+                            </select>
+        
+                            <label for="description"><b>Description: </b></label>
+                            <textarea class="form-control" name="description" id="description" placeholder="Problem Description" style="width:100%;height:15%"></textarea>
+        
+                            <label for="contact"><b>Contact Number:</b></label>
+                            <input class="form-control" type="number" name="contact" placeholder="Contact Number" id="contact" value="<%= currentUser.mobileNo %>">
+            
+                            <label for="email"><b>Email:</b></label>
+                            <input class="form-control" type="email" name="email" placeholder="Email" id="email" value="<%= currentUser.instituteEmail %>"><br>
+        
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="reset" id="reset" value="Reset" class="btn btn-outline-primary btn-form">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="submit" id="register" value="Add complaint" class="btn btn-outline-success btn-form">
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                </form>
+    </div>
+    </article>
+    </main>
+</body>
+</html>
+
+<!-- <%= currentUser %> -->
+<!-- <h2>Complain Page</h2>
+<form action="/complain" method="POST">
+
+    <label for="room">Room Number:</label>
+    <input type="text" name="room" id="room"></input><br>
+
+    <label for="type">Complain Type:</label>
+    <select name="type" id="type">
+        <option value="inside">Inside Room</option>
+        <option value="outside">Outside room/General complain</option>
+    </select><br><br>
+
+    <label for="problem">Problem:</label>
+    <select name="problem" id="problem">
+        <option value="Furniture">Furniture</option>
+        <option value="Electricity">Electricity</option>
+        <option value="LAN">LAN</option>
+        <option value="Doors and Windows">Doors and Windows</option>
+        <option value="Others">Others</option>
+    </select><br><br>
+
+    <label for="description">Description: </label>
+    <textarea name="description" id="description"></textarea><br><br>
+
+    <label for="contact">Contact Number: </label>
+    <input type="number" name="contact" placeholder="Contact Number" id="contact" value="<%= currentUser.mobileNo %>"><br><br>
+    
+    <label for="email">Email: </label>
+    <input type="email" name="email" placeholder="Email" id="email" value="<%= currentUser.instituteEmail %>"><br><br>
+
+    <input type="submit">
+</form> -->
+
+<script>
+    const typeSelect=document.getElementById("type");
+    const problem=document.getElementById("problem");
+    typeSelect.addEventListener('change',(e)=>{
+        const value = e.target.value;
+        if(value==="outside"){
+            problem.options[0].value="Cleanliness";
+            problem.options[0].innerHTML="Cleaniness";
+            problem.options[1].value="Toilets/Washrooms/Bathrooms";
+            problem.options[1].innerHTML="Toilets/Wsshrooms/Bathrooms";
+            problem.options[2].value="Mess Food";
+            problem.options[2].innerHTML="Mess Food";
+            problem.options[3].value="Water filters";
+            problem.options[3].innerHTML="Water filters";
+            problem.options[4].value="Others";
+            problem.options[4].innerHTML="Others";
+        }else{
+            problem.options[0].value="Furniture";
+            problem.options[0].innerHTML="Furniture";
+            problem.options[1].value="Electricity";
+            problem.options[1].innerHTML="Electricity";
+            problem.options[2].value="LAN";
+            problem.options[2].innerHTML="LAN";
+            problem.options[3].value="Doors and Windows";
+            problem.options[3].innerHTML="Doors and Windows";
+            problem.options[4].value="Others";
+            problem.options[4].innerHTML="Others";
+        }
+    })
+</script>

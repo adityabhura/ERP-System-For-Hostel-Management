@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="../index.css">
 </head>
 
 <style>
@@ -38,17 +41,29 @@
 </style>
 
 <body>
-    <div class="container">
+
+    <section class="navigation">
+        <div class="nav-container" style="max-width:95%;">
+          <div class="brand" style="padding:0px">
+            <a href="#" style="text-decoration: none;">Hostel Management System</a>
+          </div>
+          <nav>
+            <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+          </nav>
+        </div>
+      </section>
+
+    <div class="container1">
         <form action="/addWarden/<%=hostel._id%>" method="post">
-        <div class="login">
+        <div class="login" style="border: #4CAF50;border-style: solid;">
             <div class="row">
                 <h2>Add Warden</h2>
                 <div class="col-md-12">
-                    Name:<input type="text" class="form-control" name="name" placeholder="name">
+                    <b>Name:<input type="text" class="form-control" name="name" placeholder="name">
                     Username:<input type="text" class="form-control" name="username" placeholder="username" value="warden@<%=hostel.number%>" readonly>
                     Password:<input type="password" class="form-control" name="password" placeholder="password">
                     Email:<input type="email" class="form-control" name="email" placeholder="Email">
-                    Phone no.:<input type="number" class="form-control" name="mobileNo" placeholder="Mobile Number">
+                    Phone no.:<input type="number" class="form-control" name="mobileNo" placeholder="Mobile Number"></b>
                 </div>
             </div>
             <div class="row">

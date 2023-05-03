@@ -10,6 +10,7 @@ const Hostel = require("./models/hostel.js");
 const Warden = require("./models/warden.js");
 const Supervisor = require("./models/supervisor.js");
 const Student = require("./models/student.js");
+const Staff = require("./models/staff.js");
 
 app.use(express.static("style"));
 
@@ -51,7 +52,14 @@ passport.deserializeUser(function (id, cb) {
                         if (err) cb(err);
                         if(user) cb(null, user);
                         else{
-                          
+                          Staff.findById(id, function (err, user) {
+                            //console.log("Checking Staff");
+                            if (err) cb(err);
+                            if(user) cb(null, user);
+                            else{
+                              
+                            }
+                          })
                         }
                     })
                 }
@@ -111,6 +119,7 @@ app.use(require("./routes/hostels.js"));
 app.use(require("./routes/supervisor.js"));
 app.use(require("./routes/warden.js"));
 app.use(require("./routes/complain.js"));
+app.use(require("./routes/staff.js"));
 
 app.listen(3000,function(){
     console.log("The server has started");

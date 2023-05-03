@@ -1,183 +1,265 @@
-
-<!doctype html>
-<html lang="pt-br">
-
+<!DOCTYPE html>
+<html lang="en" >
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="UTF-8">
+  <title>Complain | <%= data._id%> </title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" href="style.css">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="../index.css">
-</head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
-        body {
+      body {
     background-color: #eee!important;
-}
-
-.login {
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 10px;
-    border: solid;
-    border-color:#4CAF50 ;
-    border-width: 2px;
-    /* border-left: 5px solid #009688; */
-    box-shadow: 0px 0px 0px 0px #3f51b5;
-}
-
-.login>.row>h2 {
-    margin: auto;
-}
-
-.btn-form {
-    width: 100%;
-    margin-top: 20px;
 }
 </style>
 
+</head>
 <body>
-
-    <section class="navigation">
-        <div class="nav-container" style="max-width:95%;">
-          <div class="brand" style="padding:0px">
-            <a href="#" style="text-decoration: none;">Hostel Management System</a>
-          </div>
-          <nav>
-            <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
-          </nav>
-        </div>
-      </section>
-      
-      <div class="sidenav">
-        <a href="/studentDashboard">Student's Dashboard</a>
-        <a href="#" class="active">Register a Complaint</a>
-        <a href="/myComplains">My complaints</a>
-        <a href="/notice">Notice Board</a>
-      </div>
-
-    <main>
-    <article style="max-width:90%;">
-    <div class="container1">
-        <h2>Complaint Registration</h2>
-
-                <form action="/complain" method="post">
-                <div class="login">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label for="room"><b>Room Number:</b></label>
-                            <input type="text" class="form-control"  name="room" id="room" placeholder="Room Number"></input>
-        
-                            <label for="type"><b>Complain Type:</b></label>
-                            <select class="form-control"  name="type" id="type">
-                                <option value="inside">Inside Room</option>
-                                <option value="outside">Outside room/General complain</option>
-                            </select>
-        
-                            <label for="problem"><b>Problem:</b></label>
-                            <select class="form-control" name="problem" id="problem">
-                                <option value="Furniture">Furniture</option>
-                                <option value="Electricity">Electricity</option>
-                                <option value="LAN">LAN</option>
-                                <option value="Doors and Windows">Doors and Windows</option>
-                                <option value="Others">Others</option>
-                            </select>
-        
-                            <label for="description"><b>Description: </b></label>
-                            <textarea class="form-control" name="description" id="description" placeholder="Problem Description" style="width:100%;height:15%"></textarea>
-        
-                            <label for="contact"><b>Contact Number:</b></label>
-                            <input class="form-control" type="number" name="contact" placeholder="Contact Number" id="contact" value="<%= currentUser.mobileNo %>">
-            
-                            <label for="email"><b>Email:</b></label>
-                            <input class="form-control" type="email" name="email" placeholder="Email" id="email" value="<%= currentUser.instituteEmail %>"><br>
-        
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input type="reset" id="reset" value="Reset" class="btn btn-outline-primary btn-form">
-                        </div>
-                        <div class="col-md-6">
-                            <input type="submit" id="register" value="Add complaint" class="btn btn-outline-success btn-form">
-                        </div>
-                    </div>
-                    <br>
-                </div>
-                </form>
+<section class="navigation">
+  <div class="nav-container" style="max-width:95%;">
+    <div class="brand" style="padding:0px">
+      <a href="#">Hostel Management System</a>
     </div>
-    </article>
-    </main>
-</body>
-</html>
+    <nav>
+      <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+    </nav>
+  </div>
+</section>
 
-<!-- <%= currentUser %> -->
-<!-- <h2>Complain Page</h2>
-<form action="/complain" method="POST">
+<div class="sidenav">
+  <a href="#" class="active">Warden's Dashboard</a>
+  <a href="/viewComplains">View Complaints</a>
+  <a href="#">View Student's in Hostel</a>
+  <a href="#">Add Notice</a>
+  <a href="#">Notice Board</a>
+  <a href="#">Allot Rooms to students</a>
+</div>
 
-    <label for="room">Room Number:</label>
-    <input type="text" name="room" id="room"></input><br>
+<main>
+<article style="max-width:90%;">
+  <h2>COMPLAINT</h2>
+  <div class="student-profile py-4">
+    <div class="container1">
+      <div class="row">
 
-    <label for="type">Complain Type:</label>
-    <select name="type" id="type">
-        <option value="inside">Inside Room</option>
-        <option value="outside">Outside room/General complain</option>
-    </select><br><br>
+        <div class="col-lg-12">
+          <div class="card shadow-sm">
+            <div class="card-header bg-transparent border-0">
+              <h3 class="mb-0"><i class="far fa-clone pr-1"></i>General Information</h3>
+            </div>
+            <div class="card-body pt-0">
+              <table class="table table-bordered">
+                <tr>
+                  <th width="30%">Complaint logged on</th>
+                  <td width="2%">:</td>
+                  <td><%= data.date %></td>
+                </tr>
+                <tr>
+                  <th width="30%">Room no.</th>
+                  <td width="2%">:</td>
+                  <td><%= data.roomtemp %></td>
+                </tr>
+                <tr>
+                  <th width="30%">Problem Place</th>
+                  <td width="2%">:</td>
+                  <td><%= data.type%> Room</td>
+                </tr>
+                <tr>
+                  <th width="30%">Problem</th>
+                  <td width="2%">:</td>
+                  <td><%= data.problem %></td>
+                </tr>
+                <tr>
+                  <th width="30%">Description</th>
+                  <td width="2%">:</td>
+                  <td><%= data.description %></td>
+                </tr>
+                <tr>
+                    <th width="30%">Student's Name</th>
+                    <td width="2%">:</td>
+                    <td><%= data.student.name %></td>
+                </tr>
+                <tr>
+                    <th width="30%">Student's Contact No.</th>
+                    <td width="2%">:</td>
+                    <td><%= data.contact %></td>
+                </tr>
+                <tr>
+                  <th width="30%">Photo Attachments</th>
+                    <td width="2%">:</td>
+                    <td>
+                      <% if(data.Attachments){ %>
+                        View
+                      <% }else{ %>
+                        No attachments
+                      <% } %>
+                    </td>
+                </tr>
+                <tr>
+                <tr>
+                  <th width="30%">Staff Assigned</th>
+                    <td width="2%">:</td>
+                    <td>
+                      <%if(data.staff){%>
+                        <%=data.staff.name%> (Contact no.- <%=data.staff.mobileNo%>)
+                      <%}else{%>
+                        Not assigned
+                      <%}%>
+                    </td>
+                </tr>
+                    <th width="30%">Status</th>
+                    <td width="2%">:</td>
+                    <td>
+                      <% if(data.resolved){ %>
+                        Resolved
+                      <% }else{ %>
+                        In Process
+                      <% } %>
+                    </td>
+                </tr>
+                <tr>
+                  <th width="30%">Resolved On</th>
+                    <td width="2%">:</td>
+                    <td>
+                      <% if(data.resolved){ %>
+                        <%= data.resolvedOn %>
+                      <% }else{ %>
+                        In Process
+                      <% } %>
+                    </td>
+                </tr>
+                <tr>
+                  <th width="30%">Resolved By</th>
+                    <td width="2%">:</td>
+                    <td>
+                      <% if(data.resolved){ %>
+                        <% var t=data.resolvedBy %>
+                        <%= t %>
+                      <% }else{ %>
+                        In Process
+                      <% } %>
+                    </td>
+                </tr>
+                <tr>
+                  <th width="30%">Remarks</th>
+                    <td width="2%">:</td>
+                    <td>
+                      <% if(data.resolved){ %>
+                        <%= data.remarks %>
+                      <% }else{ %>
+                        In Process
+                      <% } %>
+                    </td>
+                </tr>
+              </table>
+              <center>
+                <% if(data.resolved){ %>
+                    Problem resolved
+                <% }else{ %>
+                  <button data-toggle="modal" data-target="#resolveComplainModal">Resolve Complain</button>
+                  <%if(data.staff){%>
+                    <button disabled>Staff Assigned</button>
+                  <%}else{%>
+                    <button data-toggle="modal" data-target="#StaffModal">Assign to Staff</button>
+                  <%}%>
+                <form style="display: inline;">
+                    <button type="submit">Forward to Warden</button>
+                </form>
+                <% } %>
+                
+                
+              </center>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
 
-    <label for="problem">Problem:</label>
-    <select name="problem" id="problem">
-        <option value="Furniture">Furniture</option>
-        <option value="Electricity">Electricity</option>
-        <option value="LAN">LAN</option>
-        <option value="Doors and Windows">Doors and Windows</option>
-        <option value="Others">Others</option>
-    </select><br><br>
+<!--Staff Modal -->
+<div class="modal fade" id="StaffModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Assign staff</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <form action="/assignStaff/<%= data._id %>" method="POST">
+        <!-- Modal body -->
+        <div class="modal-body">
+            <label for="staffId"><b>Staff Name:</b></label>
+            <select class="form-control" name="staffId" id="staffId">
+                <% staffs.forEach(function(staff){ %>
+                    <option value="<%= staff._id %>"><%= staff.name %> (<%= staff.type %>)</option>
+                <% }) %>
+            </select>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="submit">ASSIGN</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
+        </div>
+    </form>
+        
+      </div>
+    </div>
+  </div>
 
-    <label for="description">Description: </label>
-    <textarea name="description" id="description"></textarea><br><br>
 
-    <label for="contact">Contact Number: </label>
-    <input type="number" name="contact" placeholder="Contact Number" id="contact" value="<%= currentUser.mobileNo %>"><br><br>
+
+
+
+
+  <!--Resolve Complain Modal -->
+<div class="modal fade" id="resolveComplainModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
     
-    <label for="email">Email: </label>
-    <input type="email" name="email" placeholder="Email" id="email" value="<%= currentUser.instituteEmail %>"><br><br>
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Resolve Complain</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <form action="/resolveComplain/<%=data._id%>" method="POST">
+      <!-- Modal body -->
+      <div class="modal-body">
+          <label for="remarks"><b>Add Remarks</b></label>
+          <textarea name="remarks" id="remarks"></textarea>
+      </div>
+      
+      <!-- Modal footer -->
+      <div class="modal-footer">
+          <button type="submit">Resolve</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
+      </div>
+  </form>
+      
+    </div>
+  </div>
+</div>
 
-    <input type="submit">
-</form> -->
-
+</article>
+<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./indexScript.js"></script>
 <script>
-    const typeSelect=document.getElementById("type");
-    const problem=document.getElementById("problem");
-    typeSelect.addEventListener('change',(e)=>{
-        const value = e.target.value;
-        if(value==="outside"){
-            problem.options[0].value="Cleanliness";
-            problem.options[0].innerHTML="Cleaniness";
-            problem.options[1].value="Toilets/Washrooms/Bathrooms";
-            problem.options[1].innerHTML="Toilets/Wsshrooms/Bathrooms";
-            problem.options[2].value="Mess Food";
-            problem.options[2].innerHTML="Mess Food";
-            problem.options[3].value="Water filters";
-            problem.options[3].innerHTML="Water filters";
-            problem.options[4].value="Others";
-            problem.options[4].innerHTML="Others";
-        }else{
-            problem.options[0].value="Furniture";
-            problem.options[0].innerHTML="Furniture";
-            problem.options[1].value="Electricity";
-            problem.options[1].innerHTML="Electricity";
-            problem.options[2].value="LAN";
-            problem.options[2].innerHTML="LAN";
-            problem.options[3].value="Doors and Windows";
-            problem.options[3].innerHTML="Doors and Windows";
-            problem.options[4].value="Others";
-            problem.options[4].innerHTML="Others";
-        }
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
     })
 </script>
+</body>
+</html>
+</main>

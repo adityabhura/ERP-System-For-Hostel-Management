@@ -13,6 +13,8 @@ const Warden = require("../models/warden.js");
 const Supervisor = require("../models/supervisor.js");
 const Student = require("../models/student.js");
 const Complain = require("../models/complain.js");
+const complain = require("../models/complain.js");
+const staff = require("../models/staff.js");
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
@@ -21,7 +23,7 @@ router.use(express.json());
 router.use(express.urlencoded());
 
 router.get("/complain",(req,res)=>{
-    res.render("complain");
+    res.render("addComplain");
 })
 
 router.post("/complain",(req,res)=>{
@@ -33,6 +35,7 @@ router.post("/complain",(req,res)=>{
     var email=req.body.email;
     var supervisorResolved=false;
     var studentResolved=false;
+    var date=new Date();
     Complain.create({
         roomtemp,
         type,
@@ -41,7 +44,8 @@ router.post("/complain",(req,res)=>{
         contact,
         email,
         supervisorResolved,
-        studentResolved
+        studentResolved,
+        date
     },(err,complain)=>{
         if(err)res.send(err);
         else{
@@ -66,5 +70,43 @@ router.post("/complain",(req,res)=>{
     })
     
 })
+
+router.get("/complains/:id",(req,res)=>{
+            Complain.findById(req.params.id)
+            .populate({path:"student",model:Student})
+            .populate({path:"staff",model:staff})
+            .exec((err,data)=>{
+                staff.find({},(err,staffs)=>{
+                    res.render("complain",{data:data,staffs:staffs});
+                })
+                
+            })   
+})
+
+router.post("/assignStaff/:id",(req,res)=>{
+    Complain.findById(req.params.id,(err,complain)=>{
+        staff.findById(req.body.staffId,(err,staff)=>{
+            complain.staff=staff._id;
+            staff.Complains.push(complain._id);
+            complain.save();
+            staff.save();
+            res.redirect("/viewComplains")
+        })
+        
+    })
+})
+
+router.post("/resolveComplain/:id",(req,res)=>{
+    Complain.findById(req.params.id,(err,complain)=>{
+        complain.resolved=true;
+        complain.remarks=req.body.remarks;
+        complain.resolvedBy=req.user.name;
+        complain.resolvedOn=new Date();
+        complain.save();
+        res.redirect("/complains/"+req.params.id)
+    })
+})
+
+
 
 module.exports=router

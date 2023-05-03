@@ -70,27 +70,28 @@ body {
     <table class="centered-table">
       <thead>
         <tr>
-          <th>Room Number</th>
-          <th>Problem Type</th>
-          <th>Description</th>
-          <th>Email of Student</th>
-          <th>Phone no. of Student</th>
           <th>Complain logged on:</th>
-          <th>Complain Resolved Confirmation from supervisor's side</th>
-          <th>Status on problem from Students's side:</th>
-          <th>Forward complain to Warden</th>
+          <th>Room Number</th>
+          <th>Problem Place</th>
+          <th>Problem</th>
+          <th>Student Name</th>
+          <th>Phone no. of Student</th>
+          <th>Attachments</th>
+          <th>Staff Assigned</th>
+          <th>Status</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <%  data.forEach((data)=>{  %>
           <tr>
+            <td><%= data.date %></td>
             <td><%= data.roomtemp %></td>
-            <td><%=data.type%></td>
-            <td><%=data.description%></td>
-            <td><%= data.email %></td>
-            <td><%= data.contact %></td>
-            <td><%= new Date() %></td>
-            <td>
+            <td><%=data.type%> Room</td>
+            <td><%=data.problem%></td>
+            <td><%=data.student.name%></td>
+            <td><%= data.student.mobileNo %></td>
+            <!-- <td>
               <% if(data.studentResolved==false){ %>
                 <form action="/studentResolved/<%= data._id %>" method="POST">
                     <button type="submit">Resolve problem</button><br>
@@ -106,10 +107,30 @@ body {
                 <b> Problem Resolved</b>
               <% } %>
             </td>
+            <td> -->
             <td>
-                <form action="#" method="POST">
-                    <button type="submit">Forward to Warden</button><br>
-                </form>       
+              <%if(data.Attachments){%>
+                Yes
+              <%}else{%>
+                No attachments
+              <%}%>
+            </td>
+            <td>
+              <%if(data.staff){%>
+                <%=data.staff.name%> (Contact no.- <%=data.staff.mobileNo%>)
+              <%}else{%>
+                Not assigned
+              <%}%>
+            </td>
+            <td>
+              <% if(data.resolved){ %>
+                Resolved
+              <% }else{ %>
+                In Process
+              <% } %>
+            </td>
+            <td>  
+              <a href="/complains/<%= data._id %>" ><button style="width: 100%;">View Details</button></a><br>   
             </td>
           </tr>
       <% }) %>
