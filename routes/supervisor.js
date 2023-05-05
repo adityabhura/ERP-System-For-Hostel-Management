@@ -14,6 +14,7 @@ const Supervisor = require("../models/supervisor.js");
 const Student = require("../models/student.js");
 const Complain = require("../models/complain.js");
 const staff=require("../models/staff.js");
+const warden = require("../models/warden.js");
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
@@ -126,13 +127,20 @@ router.post("/supervisorLogin", (req, res, next) => {
 router.get("/supervisorDashBoard",(req,res)=>{
     res.render("supervisorDashboard");
 }) 
-//View the complains page
-router.get("/viewComplains",(req,res)=>{
-  Hostel.findById(req.user.hostel)
-  .populate({path:"complains",model:Complain,populate:{path:"student",model:Student}})
-  .populate({path:"complains",model:Complain,populate:{path:"staff",model:staff}})
-  .exec((err,hostel)=>{
-      res.render("viewComplains",{data:hostel.complains});
+
+
+router.post("/forwardToWarden/:hostelId/:complainId",(req,res)=>{
+  Complain.findById(req.params.complainId,(err,complain)=>{
+    complain.forwardedToWarden=true;
+    complain.forwardedToWardenOn=new Date();
+    complain.save();
+    Hostel.findById(req.params.hostelId,(err,hostel)=>{
+      warden.findById(hostel.warden,(err,warden)=>{
+        warden.forwardedComplains.push(req.params.complainId);
+        warden.save();
+        res.redirect("/complains/"+req.params.complainId);
+      })
+    }) 
   })
 })
 

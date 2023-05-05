@@ -12,6 +12,8 @@ const Hostel = require("../models/hostel.js");
 const Warden = require("../models/warden.js");
 const Supervisor = require("../models/supervisor.js");
 const Student = require("../models/student.js");
+const Complain=require("../models/complain.js")
+const Staff=require("../models/staff.js")
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
@@ -119,6 +121,30 @@ router.post("/wardenLogin", (req, res, next) => {
 router.get("/warden/DashBoard",(req,res)=>{
     console.log(req.session,req.user);
     res.render("wardenDashboard");
+})
+
+// router.get("/warden/viewComplains",(req,res)=>{
+//   Hostel.findById(req.user.hostel)
+//   .populate({path:"complains",model:Complain,populate:{path:"student",model:Student}})
+//   .populate({path:"complains",model:Complain,populate:{path:"staff",model:Staff}})
+//   .exec((err,hostel)=>{
+//       res.render("wardenViewComplains",{data:hostel.complains});
+//   })
+// })
+
+router.post("/forwardToAdmin/:complainId",(req,res)=>{
+  Complain.findById(req.params.complainId,(err,complain)=>{
+    complain.forwardedToAdmin=true;
+    complain.forwardedToAdminOn=new Date();
+    complain.save();
+    Admin.find({},(err,admin)=>{
+      admin[0].forwardedComplains.push(req.params.complainId);
+      admin[0].save();
+      res.redirect("/complains/"+req.params.complainId);
+        
+    })
+    
+})
 })
 
 module.exports = router;

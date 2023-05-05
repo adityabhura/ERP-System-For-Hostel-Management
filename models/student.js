@@ -31,7 +31,11 @@ var StudentSchema=new mongoose.Schema({
     myComplains:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Complain"
-    }]
+    }],
+    userType:{
+        type:String,
+        default:"student"
+    }
 });
 
 StudentSchema.plugin(passportLocalMongoose);

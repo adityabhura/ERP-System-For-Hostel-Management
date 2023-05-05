@@ -6,7 +6,15 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const bodyParser=require("body-parser");
+const Admin = require("../models/admin.js");
+const Hostel = require("../models/hostel.js");
+const Warden = require("../models/warden.js");
+const Supervisor = require("../models/supervisor.js");
+const Student = require("../models/student.js");
+const Complain = require("../models/complain.js");
 const Staff = require("../models/staff.js");
+
+// const staff = require("../models/staff.js");
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
@@ -85,7 +93,7 @@ router.post("/staffRegister",(req,res) => {
   });
 
   router.get("/staffDashboard", (req, res) => {
-    res.send("Logged in");
+    res.render("staffDashboard");
   });
 
   router.post("/staffLogin", (req, res, next) => {
@@ -95,5 +103,19 @@ router.post("/staffRegister",(req,res) => {
       //failureFlash: true,
     })(req, res, next);
   });
+
+  router.get("/staff/:id/viewComplains",(req,res)=>{
+    Staff.findById(req.params.id).populate({path:"Complains",model:Complain,populate:{path:"student",model:Student}}).populate({path:"Complains",model:Complain,populate:{path:"staff",model:Staff}}).exec((err,staff)=>{
+      res.render("StaffViewComplains",{data:staff.Complains});
+      // res.send(staff);
+  })
+  })
+
+//   router.get("/staff/complains/:id",(req,res)=>{
+//     Complain.findById(req.params.id).populate({path:"student",model:Student}).populate({path:"staff",model:Staff})
+//     .exec((err,data)=>{
+//             res.render("complainStaff",{data:data});
+//     })   
+// })
 
   module.exports = router;

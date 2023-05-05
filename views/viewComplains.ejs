@@ -53,12 +53,22 @@ body {
 </section>
 
 <div class="sidenav">
-<a href="/supervisorDashboard">Supervisor's Dashboard</a>
-<a href="#" class="active">View Complaints</a>
-<a href="#">View Student's in Hostel</a>
-<a href="#">Add Notice</a>
-<a href="#">Notice Board</a>
-<a href="#">Allot Rooms to students</a>
+  <%if(currentUser.userType=="warden"){ %>
+    <a href="/wardenDashboard">Warden's Dashboard</a>
+    <a href="#" class="active">View Complaints</a>
+    <a href="#">View Student's in Hostel</a>
+    <a href="#">Add Notice</a>
+    <a href="#">Notice Board</a>
+    <a href="#">Allot Rooms to students</a>
+  <% }else{ %>
+    <a href="/supervisorDashboard">Supervisor's Dashboard</a>
+    <a href="#" class="active">View Complaints</a>
+    <a href="#">View Student's in Hostel</a>
+    <a href="#">Add Notice</a>
+    <a href="#">Notice Board</a>
+    <a href="#">Allot Rooms to students</a>
+  <% } %>
+
 </div>
 
 

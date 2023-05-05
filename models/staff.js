@@ -11,7 +11,11 @@ var StaffSchema=new mongoose.Schema({
     Complains:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Complain"
-    }]
+    }],
+    userType:{
+        type:String,
+        default:"staff"
+    }
 });
 
 StaffSchema.plugin(passportLocalMongoose);

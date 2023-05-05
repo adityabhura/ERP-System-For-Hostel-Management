@@ -12,6 +12,9 @@ const supervisor = require("../models/supervisor.js");
 const sgMail=require("@sendgrid/mail");
 const API_KEY="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";
 const Hostel = require("../models/hostel.js");
+const Staff = require("../models/staff.js");
+
+
 
 //Packages to add students via excel sheet
 var multer=require("multer");
@@ -161,10 +164,19 @@ router.post("/studentRegister",(req,res) => {
   });
 
 router.get("/myComplains",(req,res)=>{
-  student.findById(req.user._id).populate({path:"myComplains",model:Complain}).exec((err,student)=>{
-      res.render("myComplains",{data:student.myComplains});
-    })
+  student.findById(req.user._id).populate({path:"myComplains",model:Complain,populate:{path:"staff",model:Staff}}).exec((err,student)=>{
+    // res.send(student)
+    res.render("myComplains",{data:student.myComplains});
+  })
 })
+
+// router.get("/myComplains/:id",(req,res)=>{
+//   Complain.findById(req.params.id).populate({path:"student",model:student}).populate({path:"staff",model:Staff})
+//     .exec((err,data)=>{
+//       // res.send(data);
+//       res.render("complainStudent",{data:data});
+//     }) 
+// })
 
 router.post("/studentResolved/:complainId",(req,res)=>{
   Complain.findById(req.params.complainId,(err,complain)=>{

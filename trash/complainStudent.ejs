@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Complain | <%= data._id%> </title>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="./../../../index.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+      body {
+    background-color: #eee!important;
+}
+</style>
+
+</head>
+<body>
+<section class="navigation">
+  <div class="nav-container" style="max-width:95%;">
+    <div class="brand" style="padding:0px">
+      <a href="#">Hostel Management System</a>
+    </div>
+    <nav>
+      <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+    </nav>
+  </div>
+</section>
+
+<div class="sidenav">
+  <a href="#" class="active">Dashboard</a>
+  <a href="/viewComplains">View Complaints</a>
+</div>
+
+<main>
+<article style="max-width:90%;">
+  <h2>COMPLAINT</h2>
+  <div class="student-profile py-4">
+    <div class="container1">
+      <div class="row">
+
+        <div class="col-lg-12">
+          <div class="card shadow-sm">
+            <div class="card-header bg-transparent border-0">
+              <h3 class="mb-0"><i class="far fa-clone pr-1"></i>General Information</h3>
+            </div>
+            <div class="card-body pt-0">
+              <table class="table table-bordered">
+                <tr>
+                  <th width="30%">Complaint logged on</th>
+                  <td width="2%">:</td>
+                  <td><%= data.date %></td>
+                </tr>
+                <tr>
+                  <th width="30%">Room no.</th>
+                  <td width="2%">:</td>
+                  <td><%= data.roomtemp %></td>
+                </tr>
+                <tr>
+                  <th width="30%">Problem Place</th>
+                  <td width="2%">:</td>
+                  <td><%= data.type%> Room</td>
+                </tr>
+                <tr>
+                  <th width="30%">Problem</th>
+                  <td width="2%">:</td>
+                  <td><%= data.problem %></td>
+                </tr>
+                <tr>
+                  <th width="30%">Description</th>
+                  <td width="2%">:</td>
+                  <td><%= data.description %></td>
+                </tr>
+                <tr>
+                    <th width="30%">Student's Name</th>
+                    <td width="2%">:</td>
+                    <td><%= data.student.name %></td>
+                </tr>
+                <tr>
+                    <th width="30%">Student's Contact No.</th>
+                    <td width="2%">:</td>
+                    <td><%= data.contact %></td>
+                </tr>
+                <tr>
+                  <th width="30%">Photo Attachments</th>
+                    <td width="2%">:</td>
+                    <td>
+                      <% if(data.Attachments){ %>
+                        View
+                      <% }else{ %>
+                        No attachments
+                      <% } %>
+                    </td>
+                </tr>
+                <tr>
+                <tr>
+                  <th width="30%">Staff Assigned</th>
+                    <td width="2%">:</td>
+                    <td>
+                      <%if(data.staff){%>
+                        <%=data.staff.name%> (Contact no.- <%=data.staff.mobileNo%>)
+                      <%}else{%>
+                        Not assigned
+                      <%}%>
+                    </td>
+                </tr>
+                    <th width="30%">Status</th>
+                    <td width="2%">:</td>
+                    <td>
+                      <% if(data.resolved){ %>
+                        Resolved
+                      <% }else{ %>
+                        In Process
+                      <% } %>
+                    </td>
+                </tr>
+                <tr>
+                  <th width="30%">Resolved On</th>
+                    <td width="2%">:</td>
+                    <td>
+                      <% if(data.resolved){ %>
+                        <%= data.resolvedOn %>
+                      <% }else{ %>
+                        In Process
+                      <% } %>
+                    </td>
+                </tr>
+                <tr>
+                  <th width="30%">Resolved By</th>
+                    <td width="2%">:</td>
+                    <td>
+                      <% if(data.resolved){ %>
+                        <% var t=data.resolvedBy %>
+                        <%= t %>
+                      <% }else{ %>
+                        In Process
+                      <% } %>
+                    </td>
+                </tr>
+                <tr>
+                  <th width="30%">Remarks</th>
+                    <td width="2%">:</td>
+                    <td>
+                      <% if(data.resolved){ %>
+                        <%= data.remarks %>
+                      <% }else{ %>
+                        In Process
+                      <% } %>
+                    </td>
+                </tr>
+              </table>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+      
+    </div>
+  </div>
+</div>
+
+</article>
+<script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./../../../indexScript.js"></script>
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+</script>
+</body>
+</html>
+</main>

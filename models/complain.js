@@ -47,6 +47,10 @@ var ComplainSchema=new mongoose.Schema({
     forwardedToWarden:{type:Boolean,default:false},
     forwardedToAdmin:{type:Boolean,default:false},
 
+    forwardedToWardenOn:Date,
+    forwardedToAdminOn:Date,
+
+
 });
 
 module.exports=mongoose.model("Complain",ComplainSchema);

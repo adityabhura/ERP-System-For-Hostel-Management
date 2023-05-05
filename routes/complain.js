@@ -78,10 +78,24 @@ router.get("/complains/:id",(req,res)=>{
             .exec((err,data)=>{
                 staff.find({},(err,staffs)=>{
                     res.render("complain",{data:data,staffs:staffs});
+                    console.log(req.user);
                 })
                 
             })   
 })
+
+// router.get("/warden/complains/:id",(req,res)=>{
+//     Complain.findById(req.params.id)
+//     .populate({path:"student",model:Student})
+//     .populate({path:"staff",model:staff})
+//     .exec((err,data)=>{
+//         staff.find({},(err,staffs)=>{
+//             res.render("complainWarden",{data:data,staffs:staffs});
+//             console.log(req.user);
+//         })
+        
+//     })   
+// })
 
 router.post("/assignStaff/:id",(req,res)=>{
     Complain.findById(req.params.id,(err,complain)=>{
@@ -107,6 +121,15 @@ router.post("/resolveComplain/:id",(req,res)=>{
     })
 })
 
+//View the complains page for both warden and supervisor
+router.get("/viewComplains",(req,res)=>{
+    Hostel.findById(req.user.hostel)
+    .populate({path:"complains",model:Complain,populate:{path:"student",model:Student}})
+    .populate({path:"complains",model:Complain,populate:{path:"staff",model:staff}})
+    .exec((err,hostel)=>{
+        res.render("viewComplains",{data:hostel.complains});
+    })
+  })
 
 
 module.exports=router

@@ -162,120 +162,22 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                       <% } %>
                     </td>
                 </tr>
-                <tr>
-                  <th width="30%">Forwarded to Warden</th>
-                    <td width="2%">:</td>
-                    <td>
-                      <% if(data.forwardedToWarden){ %>
-                        Yes
-                      <% }else{ %>
-                        Not forwarded
-                      <% } %>
-                    </td>
-                </tr>
-                <tr>
-                  <th width="30%">Forwarded to Warden On</th>
-                    <td width="2%">:</td>
-                    <td>
-                      <% if(data.forwardedToWarden){ %>
-                        <%=data.forwardedToWardenOn%>
-                      <% }else{ %>
-                        Not forwarded
-                      <% } %>
-                    </td>
-                </tr>
-
-                <tr>
-                  <th width="30%">Forwarded to Admin</th>
-                    <td width="2%">:</td>
-                    <td>
-                      <% if(data.forwardedToAdmin){ %>
-                        Yes
-                      <% }else{ %>
-                        Not forwarded
-                      <% } %>
-                    </td>
-                </tr>
-                <tr>
-                  <th width="30%">Forwarded to Admin On</th>
-                    <td width="2%">:</td>
-                    <td>
-                      <% if(data.forwardedToAdmin){ %>
-                        <%=data.forwardedToAdminOn%>
-                      <% }else{ %>
-                        Not forwarded
-                      <% } %>
-                    </td>
-                </tr>
-                
               </table>
               <center>
-              <%if(currentUser.userType=="student"){%>
-                  
-                  
-
-              <%}else if(currentUser.userType=="supervisor"){%>
-
-                  <% if(data.resolved){ %>
-                    Problem resolved
-                  <% }else{ %>
-                    <button data-toggle="modal" data-target="#resolveComplainModal">Resolve Complain</button>
-                  <%if(data.staff){%>
-                    <button disabled>Staff Assigned</button>
-                  <%}else{%>
-                    <button data-toggle="modal" data-target="#StaffModal">Assign to Staff</button>
-                  <%}%>
-                    <%if(data.forwardToWarden==false){%>
-                      <form style="display: inline;" action="/forwardToWarden/<%=data.hostel%>/<%=data._id%>" method="POST">
-                        <button type="submit">Forward to Warden</button>
-                      </form>
-                    <% }else{ %>
-                      <button disabled>Forwarded to Warden</button>
-                    <% } %>
-                <% } %>
-                  
-              <%}else if(currentUser.userType=="warden"){%>
-
-                  <% if(data.resolved){ %>
-                    Problem resolved
-                  <% }else{ %>
-                    <button data-toggle="modal" data-target="#resolveComplainModal">Resolve Complain</button>
-                  <%if(data.staff){%>
-                    <button disabled>Staff Assigned</button>
-                  <%}else{%>
-                    <button data-toggle="modal" data-target="#StaffModal">Assign to Staff</button>
-                  <%}%>
-                    <%if(data.forwardedToAdmin==false){%>
-                      <form style="display: inline;" action="/forwardToAdmin/<%=data._id%>" method="POST">
-                        <button type="submit" action="/forwardToAdmin" method="POST">Forward to Admin</button>
-                      </form>
-                    <% }else{ %>
-                      <button disabled>Forwarded to Admin</button>
-                    <% } %>
-                  <% } %>
-
-              <%}else if(currentUser.userType=="admin"){%>
-
-                  <% if(data.resolved){ %>
-                    Problem resolved
-                  <% }else{ %>
-                    <button data-toggle="modal" data-target="#resolveComplainModal">Resolve Complain</button>
-                  <%if(data.staff){%>
-                    <button disabled>Staff Assigned</button>
-                  <%}else{%>
-                    <button data-toggle="modal" data-target="#StaffModal">Assign to Staff</button>
-                  <%}%>
-                <% } %>
-
-              <%}else if(currentUser.userType=="staff"){%>
-                
                 <% if(data.resolved){ %>
-                  Problem resolved
+                    Problem resolved
                 <% }else{ %>
                   <button data-toggle="modal" data-target="#resolveComplainModal">Resolve Complain</button>
+                  <%if(data.staff){%>
+                    <button disabled>Staff Assigned</button>
+                  <%}else{%>
+                    <button data-toggle="modal" data-target="#StaffModal">Assign to Staff</button>
+                  <%}%>
+                <form style="display: inline;">
+                    <button type="submit">Forward to Warden</button>
+                </form>
                 <% } %>
-
-                <%}%>
+                
                 
               </center>
             </div>

@@ -3,6 +3,7 @@ var mongoose=require("mongoose");
 
 var adminSchema=new mongoose.Schema({
     username:{type:String,unique:true},
+    name:{type:String,default:"Administration"},
     password:String,
     hostels:[{
         type:mongoose.Schema.Types.ObjectId,
@@ -12,10 +13,18 @@ var adminSchema=new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"Student"
     }],
-    complains:[{
+    Complains:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Complain"
-    }]
+    }],
+    userType:{
+        type:String,
+        default:"admin"
+    },
+    forwardedComplains:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Complain"
+    }],
 });
 
 module.exports=mongoose.model("Admin",adminSchema);

@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>My Complains</title>
+  <title>View Complain</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="../index.css">
 
@@ -19,8 +19,8 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
 body {
     background-color: #eee!important;
 }
-    /* For table */
-    .table-container {
+  /* For table */
+  .table-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,84 +53,94 @@ body {
 </section>
 
 <div class="sidenav">
-  <a href="/studentDashboard">Student's Dashboard</a>
-  <a href="/complain">Register a Complaint</a>
-  <a href="#" class="active">My complaints</a>
-  <a href="/notice">Notice Board</a>
+<a href="/supervisorDashboard">Supervisor's Dashboard</a>
+<a href="#" class="active">View Complaints</a>
+<a href="#">View Student's in Hostel</a>
+<a href="#">Add Notice</a>
+<a href="#">Notice Board</a>
+<a href="#">Allot Rooms to students</a>
 </div>
+
+
 
 <main>
 <article style="max-width:90%;">
-  <h2>My Complains</h2>
-    <div class="table-container">
-      <table class="centered-table" style="font-size: 15px;">
-        <thead>
+  <h2>COMPLAIN LIST</h2>
+  <div class="table-container">
+    <table class="centered-table">
+      <thead>
+        <tr>
+          <th>Complain logged on:</th>
+          <th>Room Number</th>
+          <th>Problem Place</th>
+          <th>Problem</th>
+          <th>Student Name</th>
+          <th>Phone no. of Student</th>
+          <th>Attachments</th>
+          <th>Staff Assigned</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%  data.forEach((data)=>{  %>
           <tr>
-            <th>Complain logged on:</th>
-            <th>Room Number</th>
-            <th>Problem Type</th>
-            <th>Description</th>
-            <th>Status</th>
-            <th>Remarks</th>
-            <th>Staff Assigned</th>
-            <th>Resolved On</th>
-            <th>Resolved By</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <%  data.forEach((data)=>{  %>
-            <tr>
-              <td><%= data.date %></td>
-              <td><%= data.roomtemp %></td>
-              <td><%=data.type%></td>
-              <td><%=data.description%></td>
-              <td>
-                <% if(data.resolved){ %>
-                  Resolved
-                <% }else{ %>
-                  In process
-                <% } %>
-              </td>
-              <td>
-                  <% if(data.resolved){ %>
-                    <%= data.remarks %>
-                  <% }else{ %>
-                    In process
-                  <% } %>
-              </td>
-              <td>
-                <% if(data.staff){ %>
-                  <%= data.staff.name %> (Contact no.- <%= data.staff.mobileNo %>)
-                <% }else{ %>
-                  No staff assigned yet.
-                <% } %>
-            </td>
-            <td>
-              <% if(data.resolved){ %>
-                <%= data.resolvedOn %>
+            <td><%= data.date %></td>
+            <td><%= data.roomtemp %></td>
+            <td><%=data.type%> Room</td>
+            <td><%=data.problem%></td>
+            <td><%=data.student.name%></td>
+            <td><%= data.student.mobileNo %></td>
+            <!-- <td>
+              <% if(data.studentResolved==false){ %>
+                <form action="/studentResolved/<%= data._id %>" method="POST">
+                    <button type="submit">Resolve problem</button><br>
+                </form>
               <% }else{ %>
-                In process
+                <b>Problem Resolved</b><br>
               <% } %>
             </td>
             <td>
-              <% if(data.resolved){ %>
-                <%= data.resolvedBy %>
+              <% if(data.studentResolved==false){ %>
+                <b>Not Resolved</b>
               <% }else{ %>
-                In process
+                <b> Problem Resolved</b>
               <% } %>
-            </td> 
+            </td>
+            <td> -->
+            <td>
+              <%if(data.Attachments){%>
+                Yes
+              <%}else{%>
+                No attachments
+              <%}%>
+            </td>
+            <td>
+              <%if(data.staff){%>
+                <%=data.staff.name%> (Contact no.- <%=data.staff.mobileNo%>)
+              <%}else{%>
+                Not assigned
+              <%}%>
+            </td>
+            <td>
+              <% if(data.resolved){ %>
+                Resolved
+              <% }else{ %>
+                In Process
+              <% } %>
+            </td>
             <td>  
               <a href="/complains/<%= data._id %>" ><button style="width: 100%;">View Details</button></a><br>   
             </td>
-            </tr>
-        <% }) %>
-          
-        </tbody>
-      </table>
-    </div>
+          </tr>
+      <% }) %>
+        
+      </tbody>
+    </table>
+  </div>
 </article>
 </main>
+
 <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./indexScript.js"></script>
 
 <script>

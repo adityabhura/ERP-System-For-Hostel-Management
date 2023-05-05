@@ -11,10 +11,14 @@ var SupervisorSchema=new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"Hostel"
     },
-    hostelComplains:[{
+    Complains:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Complain",
-    }]
+    }],
+    userType:{
+        type:String,
+        default:"supervisor"
+    } 
 });
 
 SupervisorSchema.plugin(passportLocalMongoose);
